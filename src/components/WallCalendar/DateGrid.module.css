@@ -1,0 +1,157 @@
+.gridContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.navGroup {
+  display: flex;
+  gap: 4px;
+}
+
+.monthNav {
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted-text);
+  transition: all 0.2s ease;
+}
+
+.monthNav:hover {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.monthNav:active {
+  transform: scale(0.95);
+}
+
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.weekday {
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--muted-text);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.daysGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px 0; /* vertical gap, no horizontal gap to allow continuous range background */
+}
+
+/* Day Node Wrapper */
+.dayWrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 0;
+  cursor: pointer;
+}
+
+/* Range Backgrounds */
+.dayWrapper.inRange {
+  background-color: var(--selection-color);
+}
+
+.dayWrapper.rangeStart {
+  background: linear-gradient(90deg, transparent 50%, var(--selection-color) 50%);
+}
+
+.dayWrapper.rangeEnd {
+  background: linear-gradient(90deg, var(--selection-color) 50%, transparent 50%);
+}
+
+.dayWrapper.rangeStart.rangeEnd {
+  background: transparent;
+}
+
+/* End of row / start of row edges for range */
+.dayWrapper.inRange:nth-child(7n+1), 
+.dayWrapper.rangeStart:nth-child(7n+1) {
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+}
+
+.dayWrapper.inRange:nth-child(7n), 
+.dayWrapper.rangeEnd:nth-child(7n) {
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+}
+
+/* Day Number Content */
+.dayContent {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: var(--text-color);
+  transition: all 0.2s ease;
+  z-index: 2;
+  position: relative;
+}
+
+.dayWrapper:hover .dayContent:not(.selected) {
+  background-color: var(--bg-color);
+}
+
+/* Selected States */
+.dayContent.selected {
+  background-color: var(--primary-color);
+  color: white;
+  box-shadow: var(--shadow-md);
+  font-weight: 600;
+}
+
+.dayContent.today {
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
+.dayContent.today.selected {
+  color: white;
+}
+
+.isOtherMonth .dayContent {
+  color: var(--border-color);
+}
+
+.isOtherMonth.inRange .dayContent {
+  color: var(--muted-text);
+}
+
+/* Animation for current month change */
+.daysGrid {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}

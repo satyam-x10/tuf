@@ -1,0 +1,65 @@
+.heroContainer {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  background-color: var(--primary-color);
+}
+
+.heroImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+}
+
+.heroImage:hover {
+  transform: scale(1.05); /* subtle zoom on hover */
+}
+
+/* Glassmorphism overlay for the month/year title */
+.titleOverlay {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 16px 32px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-top-left-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-right: none;
+  border-bottom: none;
+  color: #ffffff;
+  text-align: right;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.year {
+  font-size: 1.25rem;
+  font-weight: 500;
+  opacity: 0.9;
+  letter-spacing: 2px;
+}
+
+.month {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1.1;
+}
+
+/* Diagonal cut design like the inspiration */
+.heroContainer::after {
+  content: '';
+  position: absolute;
+  bottom: -50px;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background-color: var(--card-bg);
+  transform: skewY(-4deg);
+  transform-origin: bottom left;
+  z-index: 1;
+}
