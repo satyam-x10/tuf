@@ -5,7 +5,7 @@ import NotesSection from './NotesSection';
 import DateGrid from './DateGrid';
 
 const WallCalendar: React.FC = () => {
-  const [currentDate, setCurrentDate] = useState(new Date(2022, 0, 1)); // January 2022
+  const [currentDate, setCurrentDate] = useState(new Date()); // Default to today
   
   // Selection State
   const [startDate, setStartDate] = useState<Date | null>(null);
