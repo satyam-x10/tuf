@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styles from './WallCalendar.module.css';
 import HeroSection from './HeroSection';
 import NotesSection from './NotesSection';
